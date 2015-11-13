@@ -14,28 +14,27 @@
             android:layout_height="wrap_content"
             android:text="Media Player"
             android:id="@+id/textView2"
+            android:textSize="30dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="98dp"
-            android:textSize="30dp"/>
+            android:layout_marginTop="40dp" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/textView2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="77dp"
-            android:weightSum="1">
+            android:weightSum="1"
+            android:layout_below="@+id/textView2">
 
             <SurfaceView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/surfaceView"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="0.73" />
+                android:layout_weight="0.90" />
 
             <Button
                 android:layout_width="wrap_content"
