@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
 
         b = (Button) findViewById(R.id.button);
         b.setOnClickListener(new View.OnClickListener() {

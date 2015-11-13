@@ -33,6 +33,7 @@ public class CustomVideoView extends VideoView {
         if (mListener != null) {
             mListener.onPause();
         }
+
     }
 
     @Override
