@@ -19,16 +19,23 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.VideoView;
+
+import com.example.PluginClass;
 
 public class ScreenMediaPlayer extends AppCompatActivity implements SurfaceHolder.Callback, MediaPlayer.OnPreparedListener, MediaController.MediaPlayerControl {
 
     private Button b;
-
+    PluginClass plugin = new PluginClass();
     private MediaPlayer mediaPlayer;
     private SurfaceHolder vidHolder;
     private SurfaceView vidSurface;
     String videoURL = "http://cdn.s1.eu.nice264.com/converted_work6/0082c06e504b0a422bf1_6815f2deeb179c29748af42f8cd5ce95.mp4";
+
+    TextView PlaysText;
+    TextView PausesText;
+    TextView TimeElapsedText;
 
     MediaController mediacontroller;
 
@@ -41,6 +48,10 @@ public class ScreenMediaPlayer extends AppCompatActivity implements SurfaceHolde
         vidSurface = (SurfaceView) findViewById(R.id.surfaceView);
         vidHolder = vidSurface.getHolder();
         vidHolder.addCallback(this);
+
+        PlaysText = (TextView) findViewById(R.id.textView3);
+        PausesText = (TextView) findViewById(R.id.textView4);
+        TimeElapsedText = (TextView) findViewById(R.id.textView5);
 
         b = (Button) findViewById(R.id.button3);
         b.setOnClickListener(new View.OnClickListener() {
@@ -129,11 +140,16 @@ public class ScreenMediaPlayer extends AppCompatActivity implements SurfaceHolde
     @Override
     public void start() {
         mediaPlayer.start();
+        if (plugin.ElapsedTime() != 0) {
+            PlaysText.setText("Plays: "+ plugin.CountPlay());
+            TimeElapsedText.setText("Time elapsed: "+ plugin.ElapsedTime() + "ms");
+        }
     }
 
     @Override
     public void pause() {
         mediaPlayer.pause();
+        PausesText.setText("Pauses: " + plugin.CountPause());
     }
 
     @Override

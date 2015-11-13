@@ -20,29 +20,54 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <LinearLayout
-            android:orientation="vertical"
+        <com.example.judith.androidtestplugin.Customs.CustomVideoView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/videoView"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.93"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:weightSum="1"
-            android:layout_below="@+id/textView2">
+            android:layout_below="@+id/textView2"
+            android:layout_above="@+id/button3" />
 
-            <VideoView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:id="@+id/videoView"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0.93" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back To Menu"
+            android:id="@+id/button3"
+            android:layout_gravity="right"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="44dp" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Back To Menu"
-                android:id="@+id/button3"
-                android:layout_gravity="right" />
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plays: 0"
+            android:id="@+id/textView3"
+            android:layout_alignTop="@+id/button3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pauses: 0"
+            android:id="@+id/textView4"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time Elapsed: 0 ms"
+            android:id="@+id/textView5"
+            android:layout_below="@+id/textView4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
 
     </RelativeLayout>

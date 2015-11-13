@@ -15,14 +15,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.VideoView;
+
+import com.example.PluginClass;
+import com.example.judith.androidtestplugin.Customs.CustomVideoView;
 
 public class ScreenVideoView extends AppCompatActivity {
 
     private Button b;
     // Declare variables
-    VideoView videoview;
-
+    CustomVideoView videoview;
+    PluginClass plugin = new PluginClass();
+    TextView PlaysText;
+    TextView PausesText;
+    TextView TimeElapsedText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +37,26 @@ public class ScreenVideoView extends AppCompatActivity {
         setContentView(R.layout.activity_video_view);
 
         // Find your VideoView in your video_main.xml layout
-        videoview = (VideoView) findViewById(R.id.videoView);
+        videoview = (CustomVideoView) findViewById(R.id.videoView);
+        PlaysText = (TextView) findViewById(R.id.textView3);
+        PausesText = (TextView) findViewById(R.id.textView4);
+        TimeElapsedText = (TextView) findViewById(R.id.textView5);
+
+        videoview.setPlayPauseListener(new CustomVideoView.PlayPauseListener() {
+
+            @Override
+            public void onPlay() {
+                if (plugin.ElapsedTime() != 0) {
+                    PlaysText.setText("Plays: "+ plugin.CountPlay());
+                    TimeElapsedText.setText("Time elapsed: "+ plugin.ElapsedTime() + "ms");
+                }
+            }
+
+            @Override
+            public void onPause() {
+                PausesText.setText("Pauses: "+ plugin.CountPause());
+            }
+        });
 
         // Start the MediaController
         MediaController mediacontroller = new MediaController(this);
@@ -54,6 +80,7 @@ public class ScreenVideoView extends AppCompatActivity {
                 finish();
             }
         });
+
 
     }
 
