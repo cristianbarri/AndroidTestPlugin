@@ -1,43 +1,39 @@
 package com.example.judith.androidtestplugin;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.MediaController;
-import android.widget.TextView;
-import android.widget.VideoView;
 
-import com.example.PluginClass;
+import com.example.judith.androidtestplugin.Customs.CustomMediaPlayer;
+import com.example.judith.androidtestplugin.PluginClass.MyPlugin;
 
 public class ScreenMediaPlayer extends AppCompatActivity implements SurfaceHolder.Callback, MediaPlayer.OnPreparedListener, MediaController.MediaPlayerControl {
 
     private Button b;
-    PluginClass plugin = new PluginClass();
-    private MediaPlayer mediaPlayer;
+    private CustomMediaPlayer mediaPlayer;
     private SurfaceHolder vidHolder;
     private SurfaceView vidSurface;
     String videoURL = "http://cdn.s1.eu.nice264.com/converted_work6/0082c06e504b0a422bf1_6815f2deeb179c29748af42f8cd5ce95.mp4";
 
-    TextView PlaysText;
+    /*TextView PlaysText;
     TextView PausesText;
-    TextView TimeElapsedText;
+    TextView TimeElapsedText;*/
 
     MediaController mediacontroller;
+
+    /*String video_event; //START | FRAME | FINISH
+    Boolean first = true;*/
+
+    MyPlugin plugin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,21 +45,20 @@ public class ScreenMediaPlayer extends AppCompatActivity implements SurfaceHolde
         vidHolder = vidSurface.getHolder();
         vidHolder.addCallback(this);
 
-        PlaysText = (TextView) findViewById(R.id.textView3);
+        /*PlaysText = (TextView) findViewById(R.id.textView3);
         PausesText = (TextView) findViewById(R.id.textView4);
-        TimeElapsedText = (TextView) findViewById(R.id.textView5);
+        TimeElapsedText = (TextView) findViewById(R.id.textView5);*/
 
         b = (Button) findViewById(R.id.button3);
         b.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), MainActivity.class);
                 mediaPlayer.pause();
-                startActivity(i);
                 finish();
             }
         });
+
 
     }
 
@@ -105,13 +100,16 @@ public class ScreenMediaPlayer extends AppCompatActivity implements SurfaceHolde
     public void surfaceCreated(SurfaceHolder holder) {
         //prepare for playback
         try {
-            mediaPlayer = new MediaPlayer();
+            mediaPlayer = new CustomMediaPlayer();
             mediaPlayer.setDisplay(vidHolder);
             mediaPlayer.setDataSource(videoURL);
             mediaPlayer.prepare();
             mediaPlayer.setOnPreparedListener(this);
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mediacontroller = new MediaController(this);
+
+            plugin = new MyPlugin(getApplication(), mediaPlayer);
+
         }
         catch(Exception e){
             e.printStackTrace();
@@ -140,16 +138,18 @@ public class ScreenMediaPlayer extends AppCompatActivity implements SurfaceHolde
     @Override
     public void start() {
         mediaPlayer.start();
-        if (plugin.ElapsedTime() != 0) {
+        //plugin.CountPlay(getApplicationContext());
+        /*if (plugin.ElapsedTime() != 0) {
             PlaysText.setText("Plays: "+ plugin.CountPlay());
             TimeElapsedText.setText("Time elapsed: "+ plugin.ElapsedTime() + "ms");
-        }
+        }*/
     }
 
     @Override
     public void pause() {
         mediaPlayer.pause();
-        PausesText.setText("Pauses: " + plugin.CountPause());
+        //PausesText.setText("Pauses: " + plugin.CountPause());
+       //plugin.CountPause(getApplicationContext());
     }
 
     @Override

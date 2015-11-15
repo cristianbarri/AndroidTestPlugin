@@ -12,7 +12,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Video View"
+            android:text="Media Player"
             android:id="@+id/textView2"
             android:layout_marginTop="42dp"
             android:textSize="30dp"
@@ -41,7 +41,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="44dp" />
-
+<!--
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
             android:layout_below="@+id/textView4"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
-
+-->
 
     </RelativeLayout>
 

@@ -1,35 +1,27 @@
 package com.example.judith.androidtestplugin;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.MediaController;
-import android.widget.TextView;
-import android.widget.VideoView;
 
-import com.example.PluginClass;
 import com.example.judith.androidtestplugin.Customs.CustomVideoView;
+import com.example.judith.androidtestplugin.PluginClass.MyPlugin;
 
 public class ScreenVideoView extends AppCompatActivity {
 
     private Button b;
     // Declare variables
     CustomVideoView videoview;
-    PluginClass plugin = new PluginClass();
-    TextView PlaysText;
+    /*TextView PlaysText;
     TextView PausesText;
-    TextView TimeElapsedText;
+    TextView TimeElapsedText;*/
+    MyPlugin plugin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,26 +30,30 @@ public class ScreenVideoView extends AppCompatActivity {
 
         // Find your VideoView in your video_main.xml layout
         videoview = (CustomVideoView) findViewById(R.id.videoView);
-        PlaysText = (TextView) findViewById(R.id.textView3);
+        /*PlaysText = (TextView) findViewById(R.id.textView3);
         PausesText = (TextView) findViewById(R.id.textView4);
-        TimeElapsedText = (TextView) findViewById(R.id.textView5);
+        TimeElapsedText = (TextView) findViewById(R.id.textView5);*/
 
+        plugin = new MyPlugin(getApplication(), videoview);
+/*
         videoview.setPlayPauseListener(new CustomVideoView.PlayPauseListener() {
 
             @Override
             public void onPlay() {
-                if (plugin.ElapsedTime() != 0) {
-                    PlaysText.setText("Plays: "+ plugin.CountPlay());
-                    TimeElapsedText.setText("Time elapsed: "+ plugin.ElapsedTime() + "ms");
-                }
+                //if (plugin.ElapsedTime() != 0) {
+                //    PlaysText.setText("Plays: "+ plugin.CountPlay());
+                //    TimeElapsedText.setText("Time elapsed: "+ plugin.ElapsedTime() + "ms");
+                //}
+                plugin.CountPlay(getApplicationContext());
             }
 
             @Override
             public void onPause() {
-                PausesText.setText("Pauses: "+ plugin.CountPause());
+                //PausesText.setText("Pauses: "+ plugin.CountPause());
+                plugin.CountPause(getApplicationContext());
             }
         });
-
+*/
         // Start the MediaController
         MediaController mediacontroller = new MediaController(this);
         mediacontroller.setAnchorView(videoview);
@@ -75,13 +71,9 @@ public class ScreenVideoView extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), MainActivity.class);
-                startActivity(i);
                 finish();
             }
         });
-
-
     }
 
     @Override
