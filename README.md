@@ -10,7 +10,7 @@ los listeners para que automáticamente muestre por pantalla, mediante un "Toast
 botón de pause, y el numero de "plays" junto con el "Elapsed Time" entre el último pause y el actual play al tocar el botón de play.
 
 Además la primera vez que se le da al play se realiza la "HTTP Request fake" que se pide en el enunciado, también realiza otro 
-"HTTP Request fake" al finalizar el vídeo, además de mostrar los "plays" y "pauses" que se han contado hasta el momento, no he implementado
+"HTTP Request fake" al finalizar el vídeo, además de mostrar los "plays" y "pauses" que se han contado hasta el memento, no he implementado
 el "HTTP Request fake" cuando se envía el primer frame porque no he encontrado un listener para los videoview que me indique tal cosa.
 
 Los "listeners" no interfieren con los de la aplicación porque en la aplicación no hay implementado ningún "listener" de los que
